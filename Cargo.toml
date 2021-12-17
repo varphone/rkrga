@@ -1,0 +1,21 @@
+[package]
+name = "rkrga"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+categories = ["embedded", "external-ffi-bindings", "graphics"]
+description = "Rockchip RGA bindings for Rust"
+documentation = "https://docs.rs/rkrga"
+repository = "https://github.com/varphone/rkrga.git"
+authors = ["Varphone Wong <varphone@qq.com>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rkrga-sys = { version = "0.1.0", path = "rkrga-sys" }
+
+[dev-dependencies]
+paste = "1.0"
+
+[workspace]
+members = ["rkrga-sys"]

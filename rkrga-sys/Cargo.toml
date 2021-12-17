@@ -1,0 +1,17 @@
+[package]
+name = "rkrga-sys"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+categories = ["embedded", "external-ffi-bindings", "graphics"]
+description = "Rockchip RGA FFI bindings for Rust"
+documentation = "https://docs.rs/rkrga-sys"
+repository = "https://github.com/varphone/rkrga.git"
+authors = ["Varphone Wong <varphone@qq.com>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[build-dependencies]
+bindgen = "0.59.2"
