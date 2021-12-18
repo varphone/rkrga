@@ -11,7 +11,15 @@ authors = ["Varphone Wong <varphone@qq.com>"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[package.metadata.docs.rs]
+no-default-features = true
+default-target = "aarch64-unknown-linux-gnu"
+
 [dependencies]
 
 [build-dependencies]
-bindgen = "0.59.2"
+bindgen = { version = "0.59.2", optional = true }
+
+[features]
+default = []
+use-bindgen = ["bindgen"]

@@ -8,7 +8,10 @@
 #![allow(non_snake_case)]
 #![allow(unaligned_references)]
 
+#[cfg(feature = "use-bindgen")]
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
+#[cfg(not(feature = "use-bindgen"))]
+include!("bindings.rs");
 
 #[cfg(test)]
 mod tests {

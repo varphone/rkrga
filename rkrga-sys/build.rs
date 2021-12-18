@@ -1,15 +1,17 @@
-use std::env;
-use std::fs::File;
-use std::io::Write;
-use std::path::PathBuf;
-
+#[cfg(feature = "use-bindgen")]
 const DEFAULT_RKRGA_INCLUDE_DIR: &str = "/opt/fullv/2021.02.7-rklaser1/staging/usr/include/rga";
+#[cfg(feature = "use-bindgen")]
 const DEFAULT_RKRGA_SYSROOT_DIR: &str = "/opt/fullv/2021.02.7-rklaser1/staging";
 
-fn main() {
+#[cfg(feature = "use-bindgen")]
+fn generate_bindings() {
+    use std::env;
+    use std::fs::File;
+    use std::io::Write;
+    use std::path::PathBuf;
+
     println!("cargo:rerun-if-env-changed=RKRGA_INCLUDE_DIR");
     println!("cargo:rerun-if-env-changed=RKRGA_SYSROOT_DIR");
-    println!("cargo:rerun-if-changed=build.rs");
 
     let rkrga_include_dir =
         env::var("RKRGA_INCLUDE_DIR").unwrap_or_else(|_| DEFAULT_RKRGA_INCLUDE_DIR.into());
@@ -54,6 +56,13 @@ fn main() {
     bindings
         .write_to_file(out_path.join("bindings.rs"))
         .expect("Couldn't write bindings!");
+}
+
+fn main() {
+    println!("cargo:rerun-if-changed=build.rs");
+
+    #[cfg(feature = "use-bindgen")]
+    generate_bindings();
 
     println!("cargo:rustc-link-lib=dylib=rga");
 }
