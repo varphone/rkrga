@@ -9,7 +9,7 @@ macro_rules! bench_scale {
     ($sw:expr,$sh:expr,$tw:expr,$th:expr,$bpp:expr) => {
         paste! {
                 #[bench]
-                fn [<bench_rotate_ $sw _ $sh _ $tw _ $th _ $bpp>](b: &mut Bencher) {
+                fn [<bench_scale_ $sw _ $sh _ $tw _ $th _ $bpp>](b: &mut Bencher) {
                 let rga = Arc::new(Rga::new().unwrap());
                 let fmt = match $bpp {
                     8 => RgaPixelFormat::YCbCr400,
