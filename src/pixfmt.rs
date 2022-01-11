@@ -41,6 +41,22 @@ pub enum RgaPixelFormat {
     Bgr565,        // RK_FORMAT_BGR_565 = 9216,
     Bgra5551,      // RK_FORMAT_BGRA_5551 = 9472,
     Bgra4444,      // RK_FORMAT_BGRA_4444 = 9728,
+    #[cfg(feature = "v1_3_0")]
+    Argb8888, // RK_FORMAT_ARGB_8888 = 10240,
+    #[cfg(feature = "v1_3_0")]
+    Xrgb8888, // RK_FORMAT_XRGB_8888 = 10496,
+    #[cfg(feature = "v1_3_0")]
+    Argb5551, // RK_FORMAT_ARGB_5551 = 10752,
+    #[cfg(feature = "v1_3_0")]
+    Argb4444, // RK_FORMAT_ARGB_4444 = 11008,
+    #[cfg(feature = "v1_3_0")]
+    Abgr8888, // RK_FORMAT_ABGR_8888 = 11264,
+    #[cfg(feature = "v1_3_0")]
+    Xbgr8888, // RK_FORMAT_XBGR_8888 = 11520,
+    #[cfg(feature = "v1_3_0")]
+    Abgr5551, // RK_FORMAT_ABGR_5551 = 11776,
+    #[cfg(feature = "v1_3_0")]
+    Abgr4444, // RK_FORMAT_ABGR_4444 = 12032,
     Unknown,       // RK_FORMAT_UNKNOWN = 65536,
 }
 
@@ -86,6 +102,22 @@ impl RgaPixelFormat {
             Bgr565 => 16,
             Bgra5551 => 16,
             Bgra4444 => 16,
+            #[cfg(feature = "v1_3_0")]
+            Argb8888 => 32,
+            #[cfg(feature = "v1_3_0")]
+            Xrgb8888 => 32,
+            #[cfg(feature = "v1_3_0")]
+            Argb5551 => 16,
+            #[cfg(feature = "v1_3_0")]
+            Argb4444 => 16,
+            #[cfg(feature = "v1_3_0")]
+            Abgr8888 => 32,
+            #[cfg(feature = "v1_3_0")]
+            Xbgr8888 => 32,
+            #[cfg(feature = "v1_3_0")]
+            Abgr5551 => 16,
+            #[cfg(feature = "v1_3_0")]
+            Abgr4444 => 16,
             Unknown => 32,
         }
     }
@@ -134,6 +166,22 @@ impl From<ffi::RgaSURF_FORMAT> for RgaPixelFormat {
             RK_FORMAT_BGR_565 => Bgr565,
             RK_FORMAT_BGRA_5551 => Bgra5551,
             RK_FORMAT_BGRA_4444 => Bgra4444,
+            #[cfg(feature = "v1_3_0")]
+            RK_FORMAT_ARGB_8888 => Argb8888,
+            #[cfg(feature = "v1_3_0")]
+            RK_FORMAT_XRGB_8888 => Xrgb8888,
+            #[cfg(feature = "v1_3_0")]
+            RK_FORMAT_ARGB_5551 => Argb5551,
+            #[cfg(feature = "v1_3_0")]
+            RK_FORMAT_ARGB_4444 => Argb4444,
+            #[cfg(feature = "v1_3_0")]
+            RK_FORMAT_ABGR_8888 => Abgr8888,
+            #[cfg(feature = "v1_3_0")]
+            RK_FORMAT_XBGR_8888 => Xbgr8888,
+            #[cfg(feature = "v1_3_0")]
+            RK_FORMAT_ABGR_5551 => Abgr5551,
+            #[cfg(feature = "v1_3_0")]
+            RK_FORMAT_ABGR_4444 => Abgr4444,
             RK_FORMAT_UNKNOWN => Unknown,
         }
     }
@@ -182,6 +230,22 @@ impl From<RgaPixelFormat> for ffi::RgaSURF_FORMAT {
             Bgr565 => RK_FORMAT_BGR_565,
             Bgra5551 => RK_FORMAT_BGRA_5551,
             Bgra4444 => RK_FORMAT_BGRA_4444,
+            #[cfg(feature = "v1_3_0")]
+            Argb8888 => RK_FORMAT_ARGB_8888,
+            #[cfg(feature = "v1_3_0")]
+            Xrgb8888 => RK_FORMAT_XRGB_8888,
+            #[cfg(feature = "v1_3_0")]
+            Argb5551 => RK_FORMAT_ARGB_5551,
+            #[cfg(feature = "v1_3_0")]
+            Argb4444 => RK_FORMAT_ARGB_4444,
+            #[cfg(feature = "v1_3_0")]
+            Abgr8888 => RK_FORMAT_ABGR_8888,
+            #[cfg(feature = "v1_3_0")]
+            Xbgr8888 => RK_FORMAT_XBGR_8888,
+            #[cfg(feature = "v1_3_0")]
+            Abgr5551 => RK_FORMAT_ABGR_5551,
+            #[cfg(feature = "v1_3_0")]
+            Abgr4444 => RK_FORMAT_ABGR_4444,
             Unknown => RK_FORMAT_UNKNOWN,
         }
     }

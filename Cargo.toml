@@ -24,6 +24,9 @@ paste = "1.0"
 [features]
 default = []
 use-bindgen = ["rkrga-sys/use-bindgen"]
+v1_2_6 = []
+v1_3_0 = ["v1_2_6"]
+v1_3_1 = ["v1_3_0"]
 
 [workspace]
 members = ["rkrga-sys"]
