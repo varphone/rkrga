@@ -1,4 +1,6 @@
-use super::{ffi, RgaBuffer, RgaInfo, RgaPixelFormat, RgaRect, RgaRop, RgaTransform};
+use super::{
+    ffi, RgaBuffer, RgaColorSpaceMode, RgaInfo, RgaPixelFormat, RgaRect, RgaRop, RgaTransform,
+};
 use std::marker::PhantomData;
 use std::ops::{Deref, DerefMut};
 use std::os::raw::c_void;
@@ -84,6 +86,7 @@ pub struct RgaInfoBuilder<'a> {
     blend: Option<u32>,
     color: Option<i32>,
     format: Option<RgaPixelFormat>,
+    color_space_mode: Option<RgaColorSpaceMode>,
     rop: Option<RgaRop>,
     rotation: Option<RgaTransform>,
 }
@@ -98,6 +101,7 @@ impl<'a> RgaInfoBuilder<'a> {
             blend: None,
             color: None,
             format: None,
+            color_space_mode: None,
             rop: None,
             rotation: None,
         }
@@ -136,6 +140,12 @@ impl<'a> RgaInfoBuilder<'a> {
     /// 设置像素格式。
     pub fn format(mut self, format: RgaPixelFormat) -> Self {
         self.format = Some(format);
+        self
+    }
+
+    /// 设置颜色空间转换模式。
+    pub fn color_space_mode(mut self, mode: RgaColorSpaceMode) -> Self {
+        self.color_space_mode = Some(mode);
         self
     }
 
@@ -181,6 +191,10 @@ impl<'a> RgaInfoBuilder<'a> {
 
         if let Some(format) = self.format {
             info.format = ffi::RgaSURF_FORMAT::from(format) as i32;
+        }
+
+        if let Some(mode) = self.color_space_mode {
+            info.color_space_mode = mode as i32;
         }
 
         if let Some(rop) = self.rop {
