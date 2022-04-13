@@ -147,14 +147,14 @@ pub enum RgaColorSpaceMode {
     /// RGB -> YUV BT.709
     RgbToYuv709Full = 0x0200,
     ///
-    Yuv2Yuv601Limit_709Limit = 0x0300,
-    Yuv2Yuv601Limit_709Full = 0x0400,
-    Yuv2Yuv709Limit_601Limit = 0x0500,
-    Yuv2Yuv709Limit_601Full = 0x0600,
-    Yuv2Yuv601Full_709Limit = 0x0700,
-    Yuv2Yuv601Full_709Full = 0x0800,
-    Yuv2Yuv709Full_601Limit = 0x0900,
-    Yuv2Yuv709Full_601Full = 0x0a00,
+    Yuv2Yuv601Limit709Limit = 0x0300,
+    Yuv2Yuv601Limit709Full = 0x0400,
+    Yuv2Yuv709Limit601Limit = 0x0500,
+    Yuv2Yuv709Limit601Full = 0x0600,
+    Yuv2Yuv601Full709Limit = 0x0700,
+    Yuv2Yuv601Full709Full = 0x0800,
+    Yuv2Yuv709Full601Limit = 0x0900,
+    Yuv2Yuv709Full601Full = 0x0a00,
 }
 
 /// 一个描述 RGA 位操作的枚举。
