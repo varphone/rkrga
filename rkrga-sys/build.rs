@@ -1,7 +1,7 @@
 #[cfg(feature = "use-bindgen")]
 const DEFAULT_RKRGA_INCLUDE_DIR: &str = "/opt/fullv/2021.02.7-rklaser1/staging/usr/include/rga";
 #[cfg(feature = "use-bindgen")]
-const DEFAULT_RKRGA_SYSROOT_DIR: &str = "/opt/fullv/2021.02.7-rklaser1/staging";
+const DEFAULT_TARGET_SYSROOT_DIR: &str = "/opt/fullv/2021.02.7-rklaser1/staging";
 
 #[cfg(feature = "use-bindgen")]
 fn generate_bindings() {
@@ -11,12 +11,12 @@ fn generate_bindings() {
     use std::path::PathBuf;
 
     println!("cargo:rerun-if-env-changed=RKRGA_INCLUDE_DIR");
-    println!("cargo:rerun-if-env-changed=RKRGA_SYSROOT_DIR");
+    println!("cargo:rerun-if-env-changed=TARGET_SYSROOT_DIR");
 
     let rkrga_include_dir =
         env::var("RKRGA_INCLUDE_DIR").unwrap_or_else(|_| DEFAULT_RKRGA_INCLUDE_DIR.into());
-    let rkrga_sysroot_dir =
-        env::var("RKRGA_SYSROOT_DIR").unwrap_or_else(|_| DEFAULT_RKRGA_SYSROOT_DIR.into());
+    let target_sysroot_dir =
+        env::var("TARGET_SYSROOT_DIR").unwrap_or_else(|_| DEFAULT_TARGET_SYSROOT_DIR.into());
 
     let wrapper_path = PathBuf::from(env::var("OUT_DIR").unwrap()).join("wrapper.h");
     let wrapper_path = wrapper_path.to_str().unwrap();
@@ -46,8 +46,9 @@ fn generate_bindings() {
         .allowlist_var("RGA_.*")
         .allowlist_var("RK_.*")
         .clang_arg(format!("-I{}", rkrga_include_dir))
-        .clang_arg(format!("--sysroot={}", rkrga_sysroot_dir))
+        .clang_arg(format!("--sysroot={}", target_sysroot_dir))
         // .parse_callbacks(Box::new(MyParseCallbacks::default()))
+        .sort_semantically(true)
         .generate()
         .expect("Unable to generate bindings");
 
