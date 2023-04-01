@@ -38,9 +38,12 @@ pub enum RgaPixelFormat {
     YCrCb420sp10b, // RK_FORMAT_YCrCb_420_SP_10B = 8448,
     YCbCr422sp10b, // RK_FORMAT_YCbCr_422_10b_SP = 8704,
     YCrCb422sp10b, // RK_FORMAT_YCrCb_422_10b_SP = 8960,
-    Bgr565,        // RK_FORMAT_BGR_565 = 9216,
-    Bgra5551,      // RK_FORMAT_BGRA_5551 = 9472,
-    Bgra4444,      // RK_FORMAT_BGRA_4444 = 9728,
+    #[cfg(feature = "v1_2_5")]
+    Bgr565, // RK_FORMAT_BGR_565 = 9216,
+    #[cfg(feature = "v1_2_5")]
+    Bgra5551, // RK_FORMAT_BGRA_5551 = 9472,
+    #[cfg(feature = "v1_2_5")]
+    Bgra4444, // RK_FORMAT_BGRA_4444 = 9728,
     #[cfg(feature = "v1_3_0")]
     Argb8888, // RK_FORMAT_ARGB_8888 = 10240,
     #[cfg(feature = "v1_3_0")]
@@ -57,6 +60,8 @@ pub enum RgaPixelFormat {
     Abgr5551, // RK_FORMAT_ABGR_5551 = 11776,
     #[cfg(feature = "v1_3_0")]
     Abgr4444, // RK_FORMAT_ABGR_4444 = 12032,
+    #[cfg(feature = "v1_7_2")]
+    Rgba2Bpp, // RK_FORMAT_RGBA2BPP = 12288,
     Unknown,       // RK_FORMAT_UNKNOWN = 65536,
 }
 
@@ -99,8 +104,11 @@ impl RgaPixelFormat {
             YCrCb420sp10b => 15,
             YCbCr422sp10b => 20,
             YCrCb422sp10b => 20,
+            #[cfg(feature = "v1_2_5")]
             Bgr565 => 16,
+            #[cfg(feature = "v1_2_5")]
             Bgra5551 => 16,
+            #[cfg(feature = "v1_2_5")]
             Bgra4444 => 16,
             #[cfg(feature = "v1_3_0")]
             Argb8888 => 32,
@@ -118,6 +126,8 @@ impl RgaPixelFormat {
             Abgr5551 => 16,
             #[cfg(feature = "v1_3_0")]
             Abgr4444 => 16,
+            #[cfg(feature = "v1_7_2")]
+            Rgba2Bpp => 32,
             Unknown => 32,
         }
     }
@@ -161,10 +171,19 @@ impl From<ffi::RgaSURF_FORMAT> for RgaPixelFormat {
             RK_FORMAT_UYVY_420 => Uyvy420,
             RK_FORMAT_YCbCr_420_SP_10B => YCbCr420sp10b,
             RK_FORMAT_YCrCb_420_SP_10B => YCrCb420sp10b,
+            #[cfg(feature = "v1_7_2")]
+            RK_FORMAT_YCbCr_422_SP_10B => YCbCr422sp10b,
+            #[cfg(feature = "v1_7_2")]
+            RK_FORMAT_YCrCb_422_SP_10B => YCrCb422sp10b,
+            #[cfg(not(feature = "v1_7_2"))]
             RK_FORMAT_YCbCr_422_10b_SP => YCbCr422sp10b,
+            #[cfg(not(feature = "v1_7_2"))]
             RK_FORMAT_YCrCb_422_10b_SP => YCrCb422sp10b,
+            #[cfg(feature = "v1_2_5")]
             RK_FORMAT_BGR_565 => Bgr565,
+            #[cfg(feature = "v1_2_5")]
             RK_FORMAT_BGRA_5551 => Bgra5551,
+            #[cfg(feature = "v1_2_5")]
             RK_FORMAT_BGRA_4444 => Bgra4444,
             #[cfg(feature = "v1_3_0")]
             RK_FORMAT_ARGB_8888 => Argb8888,
@@ -182,6 +201,8 @@ impl From<ffi::RgaSURF_FORMAT> for RgaPixelFormat {
             RK_FORMAT_ABGR_5551 => Abgr5551,
             #[cfg(feature = "v1_3_0")]
             RK_FORMAT_ABGR_4444 => Abgr4444,
+            #[cfg(feature = "v1_7_2")]
+            RK_FORMAT_RGBA2BPP => Rgba2Bpp,
             RK_FORMAT_UNKNOWN => Unknown,
         }
     }
@@ -225,10 +246,19 @@ impl From<RgaPixelFormat> for ffi::RgaSURF_FORMAT {
             Uyvy420 => RK_FORMAT_UYVY_420,
             YCbCr420sp10b => RK_FORMAT_YCbCr_420_SP_10B,
             YCrCb420sp10b => RK_FORMAT_YCrCb_420_SP_10B,
+            #[cfg(feature = "v1_7_2")]
+            YCbCr422sp10b => RK_FORMAT_YCbCr_422_SP_10B,
+            #[cfg(not(feature = "v1_7_2"))]
             YCbCr422sp10b => RK_FORMAT_YCbCr_422_10b_SP,
+            #[cfg(feature = "v1_7_2")]
+            YCrCb422sp10b => RK_FORMAT_YCrCb_422_SP_10B,
+            #[cfg(not(feature = "v1_7_2"))]
             YCrCb422sp10b => RK_FORMAT_YCrCb_422_10b_SP,
+            #[cfg(feature = "v1_2_5")]
             Bgr565 => RK_FORMAT_BGR_565,
+            #[cfg(feature = "v1_2_5")]
             Bgra5551 => RK_FORMAT_BGRA_5551,
+            #[cfg(feature = "v1_2_5")]
             Bgra4444 => RK_FORMAT_BGRA_4444,
             #[cfg(feature = "v1_3_0")]
             Argb8888 => RK_FORMAT_ARGB_8888,
@@ -246,6 +276,8 @@ impl From<RgaPixelFormat> for ffi::RgaSURF_FORMAT {
             Abgr5551 => RK_FORMAT_ABGR_5551,
             #[cfg(feature = "v1_3_0")]
             Abgr4444 => RK_FORMAT_ABGR_4444,
+            #[cfg(feature = "v1_7_2")]
+            Rgba2Bpp => RK_FORMAT_RGBA2BPP,
             Unknown => RK_FORMAT_UNKNOWN,
         }
     }
