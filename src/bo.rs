@@ -82,12 +82,12 @@ impl RgaBuffer {
 
     /// 返回有效数据的偏移位置。
     pub fn offset(&self) -> usize {
-        self.bo.offset as usize
+        self.bo.offset
     }
 
     /// 返回一行数据的字节跨度。
     pub fn pitch(&self) -> usize {
-        self.bo.pitch as usize
+        self.bo.pitch
     }
 
     /// 返回映射到用户空间的地址。
@@ -103,7 +103,7 @@ impl RgaBuffer {
 
     /// 返回已分配的内存块字节数。
     pub fn size(&self) -> usize {
-        self.bo.size as usize
+        self.bo.size
     }
 
     /// 返回字节数组。
@@ -166,7 +166,7 @@ impl RgaBuffer {
 
     /// 返回有效的字节长度。
     pub fn len(&self) -> usize {
-        (self.bo.size - self.bo.offset) as usize
+        self.bo.size - self.bo.offset
     }
 
     /// 返回用于 DMA 操作的文件描述符。
