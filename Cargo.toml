@@ -37,6 +37,8 @@ v1_6_0 = ["rkrga-sys/v1_6_0", "v1_4_0"]
 v1_7_2 = ["rkrga-sys/v1_7_2", "v1_6_0"]
 v1_8_0 = ["rkrga-sys/v1_8_0", "v1_7_2"]
 v1_9_0 = ["rkrga-sys/v1_9_0", "v1_8_0"]
+v1_9_2 = ["rkrga-sys/v1_9_2", "v1_9_0"]
+v1_9_3 = ["rkrga-sys/v1_9_3", "v1_9_2"]
 
 [workspace]
 members = ["rkrga-sys"]

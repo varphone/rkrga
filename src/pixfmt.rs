@@ -175,9 +175,9 @@ impl From<ffi::RgaSURF_FORMAT> for RgaPixelFormat {
             RK_FORMAT_YCbCr_422_SP_10B => YCbCr422sp10b,
             #[cfg(feature = "v1_7_2")]
             RK_FORMAT_YCrCb_422_SP_10B => YCrCb422sp10b,
-            #[cfg(not(feature = "v1_7_2"))]
+            #[cfg(any(not(feature = "v1_7_2"), feature = "v1_9_3"))]
             RK_FORMAT_YCbCr_422_10b_SP => YCbCr422sp10b,
-            #[cfg(not(feature = "v1_7_2"))]
+            #[cfg(any(not(feature = "v1_7_2"), feature = "v1_9_3"))]
             RK_FORMAT_YCrCb_422_10b_SP => YCrCb422sp10b,
             #[cfg(feature = "v1_2_5")]
             RK_FORMAT_BGR_565 => Bgr565,

@@ -72,9 +72,19 @@ include!("bindings_v1_7_2.rs");
 include!("bindings_v1_8_0.rs");
 #[cfg(all(
     feature = "v1_9_0",
-    not(any(feature = "use-bindgen", feature = "v1_10_0"))
+    not(any(feature = "use-bindgen", feature = "v1_9_2"))
 ))]
 include!("bindings_v1_9_0.rs");
+#[cfg(all(
+    feature = "v1_9_2",
+    not(any(feature = "use-bindgen", feature = "v1_9_3"))
+))]
+include!("bindings_v1_9_2.rs");
+#[cfg(all(
+    feature = "v1_9_3",
+    not(any(feature = "use-bindgen", feature = "v1_10_0"))
+))]
+include!("bindings_v1_9_3.rs");
 
 #[cfg(test)]
 mod tests {
