@@ -1,6 +1,6 @@
 [package]
 name = "rkrga-sys"
-version = "1.9.0+1"
+version = "1.9.3"
 edition = "2021"
 license = "MIT"
 categories = ["embedded", "external-ffi-bindings", "graphics"]
@@ -21,7 +21,7 @@ default-target = "aarch64-unknown-linux-gnu"
 bindgen = { version = "0.65", optional = true }
 
 [features]
-default = ["v1_8_0"]
+default = ["v1_9_3"]
 use-bindgen = ["bindgen"]
 v1_2_0 = []
 v1_2_2 = ["v1_2_0"]
