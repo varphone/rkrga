@@ -183,6 +183,8 @@ pub struct drm_rga {
     pub src: rga_rect_t,
     pub dst: rga_rect_t,
 }
+pub const RGA_BLIT_SYNC: u32 = 20503;
+pub const RGA_BLIT_ASYNC: u32 = 20504;
 pub const HAL_TRANSFORM_FLIP_H: u32 = 1;
 pub const HAL_TRANSFORM_FLIP_V: u32 = 2;
 pub const HAL_TRANSFORM_ROT_90: u32 = 4;

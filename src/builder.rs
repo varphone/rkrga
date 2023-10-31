@@ -169,9 +169,11 @@ impl<'a> RgaInfoBuilder<'a> {
             info.fd = bo.dma_fd().unwrap_or(-1);
             info.virAddr = unsafe { bo.ptr() as *mut c_void };
             info.hnd = bo.handle();
+            info.mmuFlag = 1;
         } else if let Some(vir_addr) = self.vir_addr {
             info.fd = -1;
             info.virAddr = vir_addr as *mut c_void;
+            info.mmuFlag = 1;
         } else {
             panic!("RgaInfoBuilder: one of bo() orvir_addr() must be set!");
         }
@@ -205,7 +207,12 @@ impl<'a> RgaInfoBuilder<'a> {
             info.rotation = rotation as i32;
         }
 
-        info.mmuFlag = 1;
+        if cfg!(feature = "v1_4_0") {
+            info.in_fence_fd = -1;
+            info.out_fence_fd = -1;
+        }
+
+        info.sync_mode = ffi::RGA_BLIT_SYNC as i32;
 
         RgaInfoRef::new(info)
     }
