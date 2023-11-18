@@ -207,7 +207,8 @@ impl<'a> RgaInfoBuilder<'a> {
             info.rotation = rotation as i32;
         }
 
-        if cfg!(feature = "v1_4_0") {
+        #[cfg(feature = "v1_4_0")]
+        {
             info.in_fence_fd = -1;
             info.out_fence_fd = -1;
         }
