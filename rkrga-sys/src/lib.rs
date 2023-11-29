@@ -84,6 +84,11 @@ include!("bindings_v1_9_2.rs");
     not(any(feature = "use-bindgen", feature = "v1_10_0"))
 ))]
 include!("bindings_v1_9_3.rs");
+#[cfg(all(
+    feature = "v1_10_0",
+    not(any(feature = "use-bindgen", feature = "v1_11_0"))
+))]
+include!("bindings_v1_10_0.rs");
 
 #[cfg(test)]
 mod tests {
